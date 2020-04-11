@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red {
+            color: #f40;
+        }
+
+        .blue {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test">
+        你好, {{content}}, {{discription}}<br>
+        {{discription}}<br>
+        {{obj.x}}<br>
+        <input type="text" v-model="obj.x" v-on:keydown="enter">
+        <ul>
+            <li v-for="(item,index) in list">{{item.name}}:{{item.age}}</li>
+        </ul>
+        <img v-bind:src="imgSrc" alt="图片" style="width: 200px;"><br>
+        <span v-bind:class="haha">我的天啊</span><br>
+        <span v-bind:class="{red: obj.x < 2, blue: obj.x > 2}">我的地啊</span>
+    </div>
+    <script type="module">
+        import Due from './core/index.js';
+        window.test = new Due({
+            el: 'test',
+            data: {
+                content: 'panda',
+                discription: 'panda say hello',
+                obj: {
+                    x: 3,
+                    y: 2
+                },
+                list: [
+                    {
+                        name: '张三',
+                        age: 18
+                    },
+                    {
+                        name: '李四',
+                        age: 20
+                    }
+                ],
+                imgSrc: 'timg.jpg',
+                haha: 'red'
+            },
+            created() {
+                console.log('created');
+            },
+            methods: {
+                enter: function () {
+                    console.log('keydown');
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
